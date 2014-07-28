@@ -1,6 +1,4 @@
-/**
- * RF24 wirelesss node transport layer
- *
+/*
  * RF24Transport
  * Dan Nixon, 2014
  * dan-nixon.com
@@ -21,7 +19,8 @@
 typedef uint8_t pktid_t;
 
 /**
- * Type of transport later messages
+ * \enum TransportPayloadType
+ * \brief Type of transport later messages
  */
 enum TransportPayloadType
 {
@@ -31,7 +30,9 @@ enum TransportPayloadType
 };
 
 /**
- * Payload sent in a network paylaod to transmit a segemnt of a transport
+ * \struct TransportPayload
+ * \author Dan Nixon
+ * \brief Payload sent in a network paylaod to transmit a segemnt of a transport
  * paylaod
  */
 struct TransportPayload
@@ -43,7 +44,9 @@ struct TransportPayload
 };
 
 /**
- * Payload sent with a transport header packet
+ * \struct TransportPacketHeader
+ * \author Dan Nixon
+ * \brief Payload sent with a transport header packet
  */
 struct TransportPacketHeader
 {
@@ -51,8 +54,12 @@ struct TransportPacketHeader
 };
 
 /**
- * Type to hold a transport level payload in a buffer while it is being received
- * and before it is collected by a call to read()
+ * \struct TransportReceiveBuffer
+ * \author Dan Nixon
+ * \brief Type to hold a transport level payload in a buffer
+ *
+ * Held in this buffer while it is being received and before it is collected by
+ * a call to read()
  */
 struct TransportReceiveBuffer
 {
@@ -66,6 +73,14 @@ struct TransportReceiveBuffer
   uint32_t head_arrival_time;
 };
 
+/**
+ * \class RF24Transport
+ * \author Dan Nixon
+ * \brief RF24 wirelesss node transport layer
+ *
+ * Transport layer enabling atbitrarily large payloads to be transmitted
+ * over RF24 radios
+ */
 class RF24Transport
 {
   public:

@@ -1,17 +1,9 @@
-/**
- * RF24 wirelesss node transport layer
- *
- * RF24Transport
- * Dan Nixon, 2014
- * dan-nixon.com
- */
-
 #include "RF24Transport.h"
 
 /**
- * Construct a new transport layer.
+ * \brief Construct a new transport layer.
  *
- * @param network Reference to the network layer to use
+ * \param network Reference to the network layer to use
  */
 RF24Transport::RF24Transport(RF24Network &network)
 {
@@ -25,7 +17,7 @@ RF24Transport::RF24Transport(RF24Network &network)
 }
 
 /**
- * Destructor.
+ * \brief Destructor.
  *
  * Cleans up memory allocated by remaining buffers
  */
@@ -40,7 +32,7 @@ RF24Transport::~RF24Transport()
 }
 
 /**
- * Reads any new messages from the network layer and processes them.
+ * \brief Reads any new messages from the network layer and processes them.
  */
 void RF24Transport::update()
 {
@@ -91,9 +83,9 @@ void RF24Transport::update()
 }
 
 /**
- * Checks to see if there is a complete transport payload available for reading.
+ * \brief Checks to see if there is a complete transport payload available for reading.
  *
- * @return True if a payload can be read, false otherwise
+ * \return True if a payload can be read, false otherwise
  */
 bool RF24Transport::available()
 {
@@ -112,13 +104,13 @@ bool RF24Transport::available()
 }
 
 /**
- * Send a payload to a node.
+ * \brief Send a payload to a node.
  *
- * @param to_addr Node address to transmit to
- * @param payload Pointer to payload to send
- * @param len Length of payload in bytes
+ * \param to_addr Node address to transmit to
+ * \param payload Pointer to payload to send
+ * \param len Length of payload in bytes
  *
- * @return True if full payload was sent, false otherwise
+ * \return True if full payload was sent, false otherwise
  */
 bool RF24Transport::write(uint16_t to_addr, const void *payload, uint32_t len)
 {
@@ -219,11 +211,11 @@ bool RF24Transport::write(uint16_t to_addr, const void *payload, uint32_t len)
 }
 
 /**
- * Read a transport payload from the buffer.
+ * \brief Read a transport payload from the buffer.
  *
- * @param from_addr Pointer to an uint16_t to store the transmitting node address
- * @param payload Pointer to memory to store the payload in
- * @param max_len Maximum number of bytes to copy into payload
+ * \param from_addr Pointer to an uint16_t to store the transmitting node address
+ * \param payload Pointer to memory to store the payload in
+ * \param max_len Maximum number of bytes to copy into payload
  */
 void RF24Transport::read(uint16_t *from_addr, void *payload, uint32_t max_len)
 {
@@ -251,11 +243,11 @@ void RF24Transport::read(uint16_t *from_addr, void *payload, uint32_t max_len)
 }
 
 /**
- * Creates a new receiver buffer, adds it to the linked list and returns a pointer to it.
+ * \brief Creates a new receiver buffer, adds it to the linked list and returns a pointer to it.
  *
- * @param packet_id The ID of the packet
- * @param length Length of the transport payload
- * @param from_addr Address of the transmitting node
+ * \param packet_id The ID of the packet
+ * \param length Length of the transport payload
+ * \param from_addr Address of the transmitting node
  */
 TransportReceiveBuffer *RF24Transport::create_rx_buffer(pktid_t packet_id, uint32_t length, uint16_t from_addr)
 {
@@ -282,9 +274,9 @@ TransportReceiveBuffer *RF24Transport::create_rx_buffer(pktid_t packet_id, uint3
 }
 
 /**
- * Gets a pointer to a receive buffer based on it's packet number.
+ * \brief Gets a pointer to a receive buffer based on it's packet number.
  *
- * @param packet_id Packet ID to get
+ * \param packet_id Packet ID to get
  */
 TransportReceiveBuffer *RF24Transport::get_rx_buffer(pktid_t packet_id)
 {
@@ -304,9 +296,9 @@ TransportReceiveBuffer *RF24Transport::get_rx_buffer(pktid_t packet_id)
 }
 
 /**
- * Removes a buffer from the linked list.
+ * \brief Removes a buffer from the linked list.
  *
- * @param buffer The buffer to remove
+ * \param buffer The buffer to remove
  */
 void RF24Transport::delete_rx_buffer(TransportReceiveBuffer *buffer)
 {
@@ -327,9 +319,9 @@ void RF24Transport::delete_rx_buffer(TransportReceiveBuffer *buffer)
 }
 
 /**
- * Gets the number of free buffer positions
+ * \brief Gets the number of free buffer positions
  *
- * @return Number of free buffers
+ * \return Number of free buffers
  */
 uint8_t RF24Transport::num_free_buffers()
 {
@@ -346,9 +338,9 @@ uint8_t RF24Transport::num_free_buffers()
 }
 
 /**
- * Deletes any incomplete buffers older than a given timeout.
+ * \brief Deletes any incomplete buffers older than a given timeout.
  *
- * @param timeout Any incomplete buffers older than this will be deleted
+ * \param timeout Any incomplete buffers older than this will be deleted
  */
 uint8_t RF24Transport::clean_buffers(uint32_t timeout)
 {
