@@ -259,7 +259,7 @@ TransportReceiveBuffer *RF24Transport::create_rx_buffer(pktid_t packet_id, uint3
   new_buffer->complete = false;
   new_buffer->head_arrival_time = millis();
 
-  new_buffer->payload = malloc(length);
+  new_buffer->payload = (uint8_t *) malloc(length);
 
   uint8_t i;
   for(i = 0; i < NUM_TRANSPORT_BUFFERS; i++)

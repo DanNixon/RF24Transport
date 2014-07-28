@@ -67,7 +67,7 @@ struct TransportReceiveBuffer
   uint16_t from_addr;
   bool complete;
 
-  void *payload;
+  uint8_t *payload;
   uint32_t payload_len;
 
   uint32_t head_arrival_time;
